@@ -38,8 +38,15 @@ export const Piano: React.FC<PianoProps> = ({
 
   // Define the root, thirds, 5ths and chord extensions
   const getMatch = (keyMidi: number) => {
-    const keyChroma = Note.get(Note.fromMidi(keyMidi)).chroma;
-    return activeNotes.find((n) => Note.get(n.note).chroma === keyChroma);
+    return activeNotes.find((n) => {
+      const noteMidi = Note.midi(n.note);
+
+      if (noteMidi !== null) {
+        return noteMidi === keyMidi;
+      }
+
+      return Note.chroma(n.note) === Note.chroma(Note.fromMidi(keyMidi));
+    });
   };
 
   let xPosition = 0;

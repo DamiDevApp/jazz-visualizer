@@ -1,24 +1,26 @@
 import { useState, useEffect } from "react";
 import { Note } from "@tonaljs/tonal";
-import { INTERVALS } from "../constants";
 import { JazzNote, QuizQuestion } from "../jazzLogic";
 
+// The hook now expects a function that returns a QuizQuestion
 export function useQuizGame(generator: () => QuizQuestion) {
   const [target, setTarget] = useState<QuizQuestion | null>(null);
-  const [message, setMessage] = useState("Configure your timer and start!");
+  const [message, setMessage] = useState("Press Start to begin!");
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [activeNotes, setActiveNotes] = useState<JazzNote[]>([]);
 
   // Settings
   const [timerSetting, setTimerSetting] = useState(10);
-  const [showRoot, setShowRoot] = useState(true); // New Toggle State
+  const [showRoot, setShowRoot] = useState(true);
 
   // Game State
   const [timeLeft, setTimeLeft] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const startQuestion = () => {
+    // USE THE GENERATOR PASSED IN
     const newQuestion = generator();
+
     setTarget(newQuestion);
     setMessage(newQuestion.questionText);
 
@@ -29,6 +31,9 @@ export function useQuizGame(generator: () => QuizQuestion) {
     } else {
       setActiveNotes([]);
     }
+
+    setTimeLeft(timerSetting);
+    setIsProcessing(false);
   };
 
   useEffect(() => {
@@ -51,10 +56,10 @@ export function useQuizGame(generator: () => QuizQuestion) {
     const isCorrect =
       !isTimeout && Note.chroma(noteClicked) === Note.chroma(target.answer);
 
-    // FEEDBACK PHASE: Always show Root + Target (Guide Tone)
+    // FEEDBACK VISUALS
     setActiveNotes([
       { note: target.root, interval: "1P", role: "Root" },
-      { note: target.answer, interval: "Target", role: "Guide Tone" },
+      { note: target.answer, interval: "Target", role: target.answerRole },
     ]);
 
     setScore((s) => ({
@@ -65,14 +70,14 @@ export function useQuizGame(generator: () => QuizQuestion) {
     if (isTimeout) {
       setMessage(`⏰ Time's up! Answer: ${target.answer}`);
     } else if (isCorrect) {
-      setMessage(`✅ Correct! ${target.answer} is the ${target.interval}`);
+      setMessage(`✅ Correct! ${target.answer} is the ${target.answerRole}`);
     } else {
       setMessage(
         `❌ Wrong. You played ${noteClicked}. Answer: ${target.answer}`,
       );
     }
 
-    setTimeout(startQuestion, 2000); // Increased delay slightly so you can study the interval
+    setTimeout(startQuestion, 2000);
   };
 
   return {
@@ -81,18 +86,16 @@ export function useQuizGame(generator: () => QuizQuestion) {
     score,
     activeNotes,
     timeLeft,
-    // Settings exports
     timerSetting,
     setTimerSetting,
     showRoot,
     setShowRoot,
-    // Actions
     startQuestion,
     handleGuess,
     resetQuiz: () => {
       setTarget(null);
       setActiveNotes([]);
-      setMessage("Configure settings and start!");
+      setMessage("Press Start to begin!");
     },
   };
 }
