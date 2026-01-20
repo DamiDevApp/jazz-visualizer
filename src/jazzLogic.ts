@@ -1,9 +1,23 @@
 import { Note, Chord } from "@tonaljs/tonal";
+import { INTERVALS } from "./constants";
 
 export interface JazzNote {
   note: string;
   interval: string;
   role: string;
+}
+
+export interface QuizQuestion {
+  root: string;
+  questionText: string;
+  answer: string;
+  answerRole: string;
+}
+
+const ROOTS = ["C", "F", "G", "Bb", "D", "Eb", "A", "Gb", "Ab"];
+
+export function getRandomRoot() {
+  return ROOTS[Math.floor(Math.random() * ROOTS.length)];
 }
 
 export function getDominantChord(rootNote: string): JazzNote[] {
@@ -32,6 +46,7 @@ export function getDominantChord(rootNote: string): JazzNote[] {
 
   return results;
 }
+
 export function getIntervalNote(root: string, interval: string): JazzNote[] {
   const targetNote = Note.transpose(root, interval);
 
@@ -39,4 +54,33 @@ export function getIntervalNote(root: string, interval: string): JazzNote[] {
     { note: root, interval: "1P", role: "Root" },
     { note: targetNote, interval: interval, role: "Target Interval" },
   ];
+}
+
+export function generateIntervalQuestion(): QuizQuestion {
+  const root = getRandomRoot();
+  const randomInt = INTERVALS[Math.floor(Math.random() * INTERVALS.length)];
+  const answerNote = Note.transpose(root, randomInt.value);
+
+  return {
+    root,
+    questionText: `Find the ${randomInt.label} of ${root}`,
+    answer: Note.pitchClass(answerNote),
+    answerRole: randomInt.label,
+  };
+}
+
+export function generateChordQuestion(): QuizQuestion {
+  const root = getRandomRoot();
+
+  const chordNotes = getDominantChord(root);
+
+  const target =
+    chordNotes[Math.floor(1 + Math.random() * (chordNotes.length - 1))];
+
+  return {
+    root,
+    questionText: `Find the ${target.role} of ${root}`,
+    answer: Note.pitchClass(target.note),
+    answerRole: target.role,
+  };
 }

@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import { Note } from "@tonaljs/tonal";
 import { INTERVALS } from "../constants";
-import { JazzNote } from "../jazzLogic";
+import { JazzNote, QuizQuestion } from "../jazzLogic";
 
-export function useQuizGame() {
-  const [target, setTarget] = useState<{
-    root: string;
-    interval: string;
-    answer: string;
-  } | null>(null);
+export function useQuizGame(generator: () => QuizQuestion) {
+  const [target, setTarget] = useState<QuizQuestion | null>(null);
   const [message, setMessage] = useState("Configure your timer and start!");
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [activeNotes, setActiveNotes] = useState<JazzNote[]>([]);
@@ -22,29 +18,17 @@ export function useQuizGame() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const startQuestion = () => {
-    const randomRoot = ["C", "F", "G", "Bb", "D", "Eb", "A", "Gb", "Ab"][
-      Math.floor(Math.random() * 9)
-    ];
-    const randomInt = INTERVALS[Math.floor(Math.random() * INTERVALS.length)];
-    const answerNote = Note.transpose(randomRoot, randomInt.value);
+    const newQuestion = generator();
+    setTarget(newQuestion);
+    setMessage(newQuestion.questionText);
 
-    setTarget({
-      root: randomRoot,
-      interval: randomInt.label,
-      answer: Note.pitchClass(answerNote),
-    });
-
-    setMessage(`Find the ${randomInt.label} of ${randomRoot}`);
-
-    // LOGIC CHANGE: Only show root if the setting is true
     if (showRoot) {
-      setActiveNotes([{ note: randomRoot, interval: "1P", role: "Root" }]);
+      setActiveNotes([
+        { note: newQuestion.root, interval: "1P", role: "Root" },
+      ]);
     } else {
-      setActiveNotes([]); // Empty piano for extra difficulty
+      setActiveNotes([]);
     }
-
-    setTimeLeft(timerSetting);
-    setIsProcessing(false);
   };
 
   useEffect(() => {
