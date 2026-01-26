@@ -66,6 +66,7 @@ export const Piano: React.FC<PianoProps> = ({
           fill = "#60a5fa"; // Blue
         else if (match.role.includes("Guide"))
           fill = "#34d399"; // Green
+        else if (match.interval === "9M") fill = "#f472b6";
         else fill = "#fbbf24"; // Yellow
       }
 
@@ -102,6 +103,7 @@ export const Piano: React.FC<PianoProps> = ({
     if (match) {
       if (match.role === "Root") fill = "#3b82f6";
       else if (match.role.includes("Guide")) fill = "#10b981";
+      else if (match.interval === "9M") fill = "#f472b6";
       else fill = "#f59e0b";
     }
 

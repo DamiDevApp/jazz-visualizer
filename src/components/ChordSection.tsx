@@ -10,6 +10,50 @@ import {
 
 const CHORD_TYPES: ChordQuality[] = ["Major 7", "Minor 7", "Dominant 7"];
 
+/**
+ * Returns a brief explanation of the chord components based on selection.
+ */
+const getChordDescription = (
+  root: string,
+  quality: ChordQuality,
+  showNinth: boolean,
+) => {
+  const descriptions: Record<ChordQuality, string> = {
+    "Major 7": "A bright, stable sound. Uses a Major 3rd and a Major 7th.",
+    "Minor 7": "A moody, soft sound. Uses a Minor 3rd and a Minor 7th.",
+    "Dominant 7":
+      "A 'bluesy' sound that wants to resolve. Uses a Major 3rd and a Minor 7th.",
+  };
+
+  return (
+    <div
+      style={{
+        textAlign: "left",
+        fontSize: "0.9em",
+        lineHeight: "1.4em",
+        color: "#444",
+      }}
+    >
+      <p>
+        <strong>Root ({root}):</strong> The foundation of the chord.
+      </p>
+      <p>
+        <strong>Guide Tones (3 & 7):</strong> These define the {quality}{" "}
+        quality.
+      </p>
+      <p>
+        <strong>5th:</strong> Provides stability and thickness.
+      </p>
+      {showNinth && (
+        <p style={{ color: "#db2777" }}>
+          <strong>9th (Extension):</strong> Adds color and "jazz"
+          sophistication.
+        </p>
+      )}
+    </div>
+  );
+};
+
 export const ChordSection = () => {
   const [subTab, setSubTab] = useState<"learn" | "quiz">("learn");
 
@@ -21,7 +65,6 @@ export const ChordSection = () => {
   // QUIZ STATE
   const quiz = useQuizGame(generateChordQuestion);
 
-  // Determine active notes
   const activeNotes =
     subTab === "learn"
       ? getJazzChord(root, quality, showNinth)
@@ -41,7 +84,7 @@ export const ChordSection = () => {
         alignItems: "center",
       }}
     >
-      {/* TABS */}
+      {/* TABS (Existing) */}
       <div
         style={{
           marginBottom: 20,
@@ -61,7 +104,7 @@ export const ChordSection = () => {
             fontWeight: "bold",
           }}
         >
-          📖 Learn Chords
+          Learn Chords
         </button>
         <button
           onClick={() => setSubTab("quiz")}
@@ -73,7 +116,7 @@ export const ChordSection = () => {
             fontWeight: "bold",
           }}
         >
-          🎮 Practice Quiz
+          Practice Quiz
         </button>
       </div>
 
@@ -82,18 +125,38 @@ export const ChordSection = () => {
         endNote="C5"
         activeNotes={activeNotes}
         onKeyClick={handleKeyClick}
+        // Ensure the Piano component is receiving the correct color for the 9th index
+        specialColor={showNinth ? "#f472b6" : undefined}
       />
 
       {subTab === "learn" ? (
-        <div style={{ marginTop: 20, textAlign: "center", width: "100%" }}>
+        <div
+          style={{
+            marginTop: 20,
+            textAlign: "center",
+            width: "100%",
+            maxWidth: "600px",
+          }}
+        >
           <div style={{ marginBottom: 15 }}>
             <h3>
               {root} {quality} {showNinth && "(add 9)"}
             </h3>
-            <p style={{ color: "#666" }}>Click keys to change root.</p>
+            {/* NEW DESCRIPTION BOX */}
+            <div
+              style={{
+                background: "#eff6ff",
+                padding: "15px",
+                borderRadius: "8px",
+                marginBottom: "15px",
+                border: "1px solid #dbeafe",
+              }}
+            >
+              {getChordDescription(root, quality, showNinth)}
+            </div>
           </div>
 
-          {/* CONTROLS */}
+          {/* CONTROLS (Existing) */}
           <div
             style={{
               display: "flex",
@@ -105,7 +168,6 @@ export const ChordSection = () => {
               borderRadius: 8,
             }}
           >
-            {/* Quality Selector */}
             <div
               style={{
                 display: "flex",
@@ -138,8 +200,6 @@ export const ChordSection = () => {
                 ))}
               </select>
             </div>
-
-            {/* Extensions Toggle */}
             <div
               style={{ display: "flex", alignItems: "center", marginTop: 15 }}
             >
@@ -162,7 +222,7 @@ export const ChordSection = () => {
             </div>
           </div>
 
-          {/* COLOR LEGEND */}
+          {/* COLOR LEGEND (Updated Pink Reference) */}
           <div
             style={{
               marginTop: 20,
@@ -200,17 +260,7 @@ export const ChordSection = () => {
           </div>
         </div>
       ) : (
-        <QuizControls
-          target={quiz.target}
-          message={quiz.message}
-          score={quiz.score}
-          timeLeft={quiz.timeLeft}
-          timerSetting={quiz.timerSetting}
-          setTimerSetting={quiz.setTimerSetting}
-          showRoot={quiz.showRoot}
-          setShowRoot={quiz.setShowRoot}
-          onStart={quiz.startQuestion}
-        />
+        <QuizControls {...quiz} onStart={quiz.startQuestion} />
       )}
     </div>
   );
