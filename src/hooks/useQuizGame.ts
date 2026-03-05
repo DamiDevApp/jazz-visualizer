@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Note } from "@tonaljs/tonal";
+import { Note } from "tonal";
 import { JazzNote, QuizQuestion } from "../jazzLogic";
 
 // The hook now expects a function that returns a QuizQuestion
