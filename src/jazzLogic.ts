@@ -1,4 +1,4 @@
-import { Note, Chord } from "@tonaljs/tonal";
+import { Note } from "tonal";
 import { INTERVALS } from "./constants";
 
 export interface JazzNote {
