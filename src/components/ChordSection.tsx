@@ -125,8 +125,6 @@ export const ChordSection = () => {
         endNote="C5"
         activeNotes={activeNotes}
         onKeyClick={handleKeyClick}
-        // Ensure the Piano component is receiving the correct color for the 9th index
-        specialColor={showNinth ? "#f472b6" : undefined}
       />
 
       {subTab === "learn" ? (

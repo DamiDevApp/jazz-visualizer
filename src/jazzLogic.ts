@@ -20,8 +20,6 @@ export function getRandomRoot() {
   return ROOTS[Math.floor(Math.random() * ROOTS.length)];
 }
 
-// --- NEW CHORD LOGIC ---
-
 export type ChordQuality = "Major 7" | "Minor 7" | "Dominant 7";
 
 export function getJazzChord(
@@ -77,7 +75,6 @@ export function getIntervalNote(root: string, interval: string): JazzNote[] {
   ];
 }
 
-// --- QUIZ GENERATORS ---
 export function generateIntervalQuestion(): QuizQuestion {
   const root = getRandomRoot();
   const randomInt = INTERVALS[Math.floor(Math.random() * INTERVALS.length)];
