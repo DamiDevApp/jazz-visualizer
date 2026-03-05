@@ -1,5 +1,5 @@
 import React from "react";
-import { DIFFICULTIES } from "../constants";
+import { DIFFICULTIES } from "../constants/difficulties.constants";
 
 interface Props {
   target: any;
