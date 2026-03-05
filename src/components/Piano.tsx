@@ -1,5 +1,5 @@
 import React from "react";
-import { Note } from "@tonaljs/tonal"; // Ignore the deprecation for now, it still functions
+import { Note } from "tonal";
 import { JazzNote } from "../jazzLogic";
 
 interface PianoProps {
