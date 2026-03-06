@@ -1,68 +1,22 @@
+/* index.css */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Jazz Chord Roles */
+  --color-root: #60a5fa;
+  --color-root-dark: #3b82f6;
+  --color-guide-tone: #34d399;
+  --color-guide-tone-dark: #10b981;
+  --color-fifth: #fbbf24;
+  --color-fifth-dark: #f59e0b;
+  --color-extension: #f472b6;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  --color-ui-primary: #3b82f6;
+  --color-ui-success: #10b981;
+  --color-ui-danger: #ef4444;
+  --color-ui-bg-subtle: #f9fafb;
+  --color-ui-bg-darker: #dddddd;
+  --color-ui-border: #dbeafe;
+  --color-ui-border-default: #ddd;
+  --color-ui-text-main: #444;
+  --color-ui-text-muted: #666;
+  --color-ui-gray-light: #e5e7eb;
 }
