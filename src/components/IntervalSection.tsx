@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { UI_COLORS } from "../constants/theme.constants";
 import { Piano } from "./Piano";
 import { IntervalControls } from "./IntervalControls";
 import { QuizControls } from "./QuizControls";
@@ -39,7 +40,7 @@ export const IntervalSection = () => {
       <div
         style={{
           marginBottom: 20,
-          borderBottom: "1px solid #ddd",
+          borderBottom: `1px solid ${UI_COLORS.borderDefault}`,
           width: "100%",
           display: "flex",
           justifyContent: "center",
@@ -49,7 +50,8 @@ export const IntervalSection = () => {
           onClick={() => setSubTab("learn")}
           style={{
             padding: "10px 20px",
-            borderBottom: subTab === "learn" ? "3px solid #3b82f6" : "none",
+            borderBottom:
+              subTab === "learn" ? `3px solid ${UI_COLORS.primary}` : "none",
             background: "none",
             cursor: "pointer",
             fontWeight: "bold",
@@ -61,7 +63,8 @@ export const IntervalSection = () => {
           onClick={() => setSubTab("quiz")}
           style={{
             padding: "10px 20px",
-            borderBottom: subTab === "quiz" ? "3px solid #10b981" : "none",
+            borderBottom:
+              subTab === "quiz" ? `3px solid ${UI_COLORS.success}` : "none",
             background: "none",
             cursor: "pointer",
             fontWeight: "bold",

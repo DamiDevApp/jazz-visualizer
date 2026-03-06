@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IntervalSection } from "./components/IntervalSection";
 import { ChordSection } from "./components/ChordSection";
+import { UI_COLORS } from "./constants/theme.constants";
 
 // Placeholder for future sections
 const ScalesPlaceholder = () => (
@@ -25,7 +26,6 @@ function App() {
           minHeight: "100vh",
           width: "100vw",
           fontFamily: "sans-serif",
-          color: "#333",
         }}
       >
         <div
@@ -57,7 +57,10 @@ function App() {
                   style={{
                     padding: "10px 20px",
                     fontWeight: topic === t ? "bold" : "normal",
-                    background: topic === t ? "#1f2937" : "#e5e7eb", // Darker active state
+                    background:
+                      topic === t
+                        ? UI_COLORS.primary
+                        : UI_COLORS.backgroundDarker, // Darker active state
                     color: topic === t ? "white" : "black",
                     border: "none",
                     borderRadius: 6,
