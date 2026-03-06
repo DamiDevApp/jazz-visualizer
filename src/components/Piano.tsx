@@ -1,6 +1,7 @@
 import React from "react";
 import { Note } from "tonal";
 import { JazzNote } from "../jazzLogic";
+import { CHORD_COLORS } from "../constants/theme.constants";
 
 interface PianoProps {
   startNote: string;
@@ -63,11 +64,11 @@ export const Piano: React.FC<PianoProps> = ({
       let fill = "white";
       if (match) {
         if (match.role === "Root")
-          fill = "#60a5fa"; // Blue
+          fill = CHORD_COLORS.root; // Blue
         else if (match.role.includes("Guide"))
-          fill = "#34d399"; // Green
-        else if (match.interval === "9M") fill = "#f472b6";
-        else fill = "#fbbf24"; // Yellow
+          fill = CHORD_COLORS.guideTone; // Green
+        else if (match.interval === "9M") fill = CHORD_COLORS.extension;
+        else fill = CHORD_COLORS.fifth; // Yellow
       }
 
       return (
@@ -101,10 +102,10 @@ export const Piano: React.FC<PianoProps> = ({
 
     let fill = "black";
     if (match) {
-      if (match.role === "Root") fill = "#3b82f6";
-      else if (match.role.includes("Guide")) fill = "#10b981";
-      else if (match.interval === "9M") fill = "#f472b6";
-      else fill = "#f59e0b";
+      if (match.role === "Root") fill = CHORD_COLORS.root;
+      else if (match.role.includes("Guide")) fill = CHORD_COLORS.guideTone;
+      else if (match.interval === "9M") fill = CHORD_COLORS.extension;
+      else fill = CHORD_COLORS.fifth;
     }
 
     return (
