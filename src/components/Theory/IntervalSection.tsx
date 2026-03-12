@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { UI_COLORS } from "../constants/theme.constants";
-import { Piano } from "./Piano";
+import { UI_COLORS } from "../../constants/theme.constants";
+import { Piano } from "../Instruments/Piano";
 import { IntervalControls } from "./IntervalControls";
-import { QuizControls } from "./QuizControls";
-import { useQuizGame } from "../hooks/useQuizGame";
-import { getIntervalNote, generateIntervalQuestion } from "../jazzLogic";
+import { QuizControls } from "../Quiz/QuizControls";
+import { useQuizGame } from "../../hooks/useQuizGame";
+import { getIntervalNote, generateIntervalQuestion } from "../../jazzLogic";
 
 export const IntervalSection = () => {
   const [subTab, setSubTab] = useState<"learn" | "quiz">("learn");

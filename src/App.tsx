@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { IntervalSection } from "./components/IntervalSection";
-import { ChordSection } from "./components/ChordSection";
+import { IntervalSection } from "./components/Theory/IntervalSection";
+import { ChordSection } from "./components/Theory/ChordSection";
 import { UI_COLORS } from "./constants/theme.constants";
 import { Topic } from "./constants/topic.constants";
 import styles from "./App.module.css";

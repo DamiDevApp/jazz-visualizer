@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Piano } from "./Piano";
-import { QuizControls } from "./QuizControls";
-import { useQuizGame } from "../hooks/useQuizGame";
+import { Piano } from "../Instruments/Piano";
+import { QuizControls } from "../Quiz/QuizControls";
+import { useQuizGame } from "../../hooks/useQuizGame";
 import {
   getJazzChord,
   generateChordQuestion,
   ChordQuality,
-} from "../jazzLogic";
-import { CHORD_COLORS, UI_COLORS } from "../constants/theme.constants";
+} from "../../jazzLogic";
+import { CHORD_COLORS, UI_COLORS } from "../../constants/theme.constants";
 
 const CHORD_TYPES: ChordQuality[] = ["Major 7", "Minor 7", "Dominant 7"];
 

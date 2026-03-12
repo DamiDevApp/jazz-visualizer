@@ -1,6 +1,6 @@
 import React from "react";
-import { INTERVALS } from "../constants/intervals.constants";
-import { UI_COLORS } from "../constants/theme.constants";
+import { INTERVALS } from "../../constants/intervals.constants";
+import { UI_COLORS } from "../../constants/theme.constants";
 
 interface Props {
   root: string;

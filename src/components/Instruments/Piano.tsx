@@ -1,7 +1,7 @@
 import React from "react";
 import { Note } from "tonal";
-import { JazzNote } from "../jazzLogic";
-import { CHORD_COLORS } from "../constants/theme.constants";
+import { JazzNote } from "../../jazzLogic";
+import { CHORD_COLORS } from "../../constants/theme.constants";
 
 interface PianoProps {
   startNote: string;

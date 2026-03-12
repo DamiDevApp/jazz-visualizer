@@ -1,6 +1,6 @@
 import React from "react";
-import { DIFFICULTIES } from "../constants/difficulties.constants";
-import { CHORD_COLORS, UI_COLORS } from "../constants/theme.constants";
+import { DIFFICULTIES } from "../../constants/difficulties.constants";
+import { CHORD_COLORS, UI_COLORS } from "../../constants/theme.constants";
 
 interface Props {
   target: any;
