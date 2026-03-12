@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Piano } from "./Piano";
-import { QuizControls } from "./QuizControls";
-import { useQuizGame } from "../hooks/useQuizGame";
+import { Piano } from "../Instruments/Piano";
+import { QuizControls } from "../Quiz/QuizControls";
+import { useQuizGame } from "../../hooks/useQuizGame";
 import {
   getJazzChord,
   generateChordQuestion,
   ChordQuality,
-} from "../jazzLogic";
+} from "../../jazzLogic";
+import { CHORD_COLORS, UI_COLORS } from "../../constants/theme.constants";
 
 const CHORD_TYPES: ChordQuality[] = ["Major 7", "Minor 7", "Dominant 7"];
 
@@ -31,7 +32,7 @@ const getChordDescription = (
         textAlign: "left",
         fontSize: "0.9em",
         lineHeight: "1.4em",
-        color: "#444",
+        color: UI_COLORS.textMain,
       }}
     >
       <p>
@@ -45,7 +46,7 @@ const getChordDescription = (
         <strong>5th:</strong> Provides stability and thickness.
       </p>
       {showNinth && (
-        <p style={{ color: "#db2777" }}>
+        <p style={{ color: CHORD_COLORS.extension }}>
           <strong>9th (Extension):</strong> Adds color and "jazz"
           sophistication.
         </p>
@@ -98,7 +99,8 @@ export const ChordSection = () => {
           onClick={() => setSubTab("learn")}
           style={{
             padding: "10px 20px",
-            borderBottom: subTab === "learn" ? "3px solid #3b82f6" : "none",
+            borderBottom:
+              subTab === "learn" ? `3px solid ${UI_COLORS.primary}` : "none",
             background: "none",
             cursor: "pointer",
             fontWeight: "bold",
@@ -110,7 +112,8 @@ export const ChordSection = () => {
           onClick={() => setSubTab("quiz")}
           style={{
             padding: "10px 20px",
-            borderBottom: subTab === "quiz" ? "3px solid #10b981" : "none",
+            borderBottom:
+              subTab === "quiz" ? `3px solid ${UI_COLORS.success}` : "none",
             background: "none",
             cursor: "pointer",
             fontWeight: "bold",
@@ -143,11 +146,11 @@ export const ChordSection = () => {
             {/* NEW DESCRIPTION BOX */}
             <div
               style={{
-                background: "#eff6ff",
+                background: UI_COLORS.backgroundDarker,
                 padding: "15px",
                 borderRadius: "8px",
                 marginBottom: "15px",
-                border: "1px solid #dbeafe",
+                border: `1px solid ${UI_COLORS.border}`,
               }}
             >
               {getChordDescription(root, quality, showNinth)}
@@ -161,7 +164,7 @@ export const ChordSection = () => {
               gap: 20,
               justifyContent: "center",
               alignItems: "center",
-              background: "#f9fafb",
+              background: UI_COLORS.backgroundDarker,
               padding: 15,
               borderRadius: 8,
             }}
@@ -188,7 +191,7 @@ export const ChordSection = () => {
                 style={{
                   padding: 8,
                   borderRadius: 4,
-                  border: "1px solid #ccc",
+                  border: `1px solid ${UI_COLORS.border}`,
                 }}
               >
                 {CHORD_TYPES.map((type) => (
@@ -228,30 +231,42 @@ export const ChordSection = () => {
               gap: 15,
               justifyContent: "center",
               fontSize: "0.8em",
-              color: "#555",
+              color: UI_COLORS.textMain,
             }}
           >
             <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <span
-                style={{ width: 10, height: 10, background: "#60a5fa" }}
+                style={{ width: 10, height: 10, background: CHORD_COLORS.root }}
               ></span>{" "}
               Root
             </span>
             <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <span
-                style={{ width: 10, height: 10, background: "#34d399" }}
+                style={{
+                  width: 10,
+                  height: 10,
+                  background: CHORD_COLORS.guideTone,
+                }}
               ></span>{" "}
               Guide Tones (3/7)
             </span>
             <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <span
-                style={{ width: 10, height: 10, background: "#fbbf24" }}
+                style={{
+                  width: 10,
+                  height: 10,
+                  background: CHORD_COLORS.fifth,
+                }}
               ></span>{" "}
               5th
             </span>
             <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <span
-                style={{ width: 10, height: 10, background: "#f472b6" }}
+                style={{
+                  width: 10,
+                  height: 10,
+                  background: CHORD_COLORS.extension,
+                }}
               ></span>{" "}
               9th
             </span>

@@ -1,5 +1,6 @@
 import React from "react";
-import { DIFFICULTIES } from "../constants";
+import { DIFFICULTIES } from "../../constants/difficulties.constants";
+import { CHORD_COLORS, UI_COLORS } from "../../constants/theme.constants";
 
 interface Props {
   target: any;
@@ -32,7 +33,7 @@ export const QuizControls: React.FC<Props> = ({
       style={{
         marginTop: 20,
         textAlign: "center",
-        background: "#f3f4f6",
+        background: UI_COLORS.background,
         padding: 20,
         borderRadius: 12,
         width: "100%",
@@ -46,7 +47,7 @@ export const QuizControls: React.FC<Props> = ({
           style={{
             marginBottom: 20,
             padding: 15,
-            background: "white",
+            background: UI_COLORS.background,
             borderRadius: 8,
           }}
         >
@@ -63,7 +64,9 @@ export const QuizControls: React.FC<Props> = ({
                   style={{
                     padding: "6px 12px",
                     background:
-                      timerSetting === diff.value ? "#4f46e5" : "#e5e7eb",
+                      timerSetting === diff.value
+                        ? UI_COLORS.primary
+                        : UI_COLORS.backgroundDarker,
                     color: timerSetting === diff.value ? "white" : "black",
                     border: "none",
                     borderRadius: 6,
@@ -115,7 +118,7 @@ export const QuizControls: React.FC<Props> = ({
           Score: {score.correct} / {score.total}
         </span>
         {target && timerSetting > 0 && (
-          <span style={{ color: timeLeft <= 3 ? "red" : "black" }}>
+          <span style={{ color: timeLeft <= 3 ? UI_COLORS.danger : "black" }}>
             Time: {timeLeft}s
           </span>
         )}
@@ -131,7 +134,7 @@ export const QuizControls: React.FC<Props> = ({
           style={{
             fontSize: "1.2em",
             padding: "10px 30px",
-            background: "#10b981",
+            background: UI_COLORS.primary,
             color: "white",
             border: "none",
             borderRadius: 8,
@@ -144,9 +147,19 @@ export const QuizControls: React.FC<Props> = ({
 
       {/* Legend (Always visible) */}
       <div
-        style={{ marginTop: 25, borderTop: "1px solid #ddd", paddingTop: 10 }}
+        style={{
+          marginTop: 25,
+          borderTop: `1px solid ${UI_COLORS.backgroundDarker}`,
+          paddingTop: 10,
+        }}
       >
-        <p style={{ fontSize: "0.9em", color: "#666", marginBottom: 5 }}>
+        <p
+          style={{
+            fontSize: "0.9em",
+            color: UI_COLORS.textMuted,
+            marginBottom: 5,
+          }}
+        >
           Color Legend:
         </p>
         <div
@@ -162,8 +175,8 @@ export const QuizControls: React.FC<Props> = ({
               style={{
                 width: 15,
                 height: 15,
-                background: "#60a5fa",
-                border: "1px solid #333",
+                background: CHORD_COLORS.root,
+                border: `1px solid ${UI_COLORS.backgroundDarker}`,
               }}
             ></div>
             <span>Root Note</span>
@@ -173,8 +186,8 @@ export const QuizControls: React.FC<Props> = ({
               style={{
                 width: 15,
                 height: 15,
-                background: "#34d399",
-                border: "1px solid #333",
+                background: CHORD_COLORS.guideTone,
+                border: `1px solid ${UI_COLORS.border}`,
               }}
             ></div>
             <span>Target (Guide)</span>
@@ -184,8 +197,8 @@ export const QuizControls: React.FC<Props> = ({
               style={{
                 width: 15,
                 height: 15,
-                background: "#fbbf24",
-                border: "1px solid #333",
+                background: CHORD_COLORS.fifth,
+                border: `1px solid ${UI_COLORS.border}`,
               }}
             ></div>
             <span>Other Chord Tones</span>

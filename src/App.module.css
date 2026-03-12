@@ -1,0 +1,57 @@
+/* Reset styles injected globally — applied via :global in module context */
+:global(html),
+:global(body),
+:global(#root) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Outer full-viewport centering wrapper */
+.pageWrapper {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  font-family: sans-serif;
+}
+
+/* Inner content container */
+.contentContainer {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* App title */
+.title {
+  margin-bottom: 10px;
+}
+
+/* Topic navigation bar */
+.topicNav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Individual topic button — base styles */
+.topicButton {
+  padding: 10px 20px;
+  font-weight: normal;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+/* Active topic button modifier */
+.topicButtonActive {
+  font-weight: bold;
+  color: white;
+}

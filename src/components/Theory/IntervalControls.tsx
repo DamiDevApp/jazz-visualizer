@@ -1,5 +1,6 @@
 import React from "react";
-import { INTERVALS } from "../constants";
+import { INTERVALS } from "../../constants/intervals.constants";
+import { UI_COLORS } from "../../constants/theme.constants";
 
 interface Props {
   root: string;
@@ -40,7 +41,9 @@ export const IntervalControls: React.FC<Props> = ({
             style={{
               padding: "8px",
               background:
-                selectedInterval === int.value ? "#3b82f6" : "#e5e7eb",
+                selectedInterval === int.value
+                  ? UI_COLORS.primary
+                  : UI_COLORS.grayLight,
               color: selectedInterval === int.value ? "white" : "black",
               border: "none",
               borderRadius: "4px",
