@@ -1,0 +1,26 @@
+.container {
+  margin-top: 20;
+  text-align: center;
+}
+
+.intervalsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  max-width: 600px;
+}
+
+.button {
+  padding: 8px;
+  background: var(--color-ui-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buttonActive {
+  background: var(--color-ui-gray-light);
+  color: black;
+}
