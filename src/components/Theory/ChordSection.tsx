@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Piano } from "../Instruments/Piano";
 import { QuizControls } from "../Quiz/QuizControls";
 import { useQuizGame } from "../../hooks/useQuizGame";
@@ -7,7 +7,7 @@ import {
   generateChordQuestion,
   ChordQuality,
 } from "../../jazzLogic";
-import { CHORD_COLORS, UI_COLORS } from "../../constants/theme.constants";
+import styles from "./ChordSection.module.css";
 
 const CHORD_TYPES: ChordQuality[] = ["Major 7", "Minor 7", "Dominant 7"];
 
@@ -27,14 +27,7 @@ const getChordDescription = (
   };
 
   return (
-    <div
-      style={{
-        textAlign: "left",
-        fontSize: "0.9em",
-        lineHeight: "1.4em",
-        color: UI_COLORS.textMain,
-      }}
-    >
+    <div className={styles.chordDescriptionContainer}>
       <p>
         <strong>Root ({root}):</strong> The foundation of the chord.
       </p>
@@ -46,7 +39,7 @@ const getChordDescription = (
         <strong>5th:</strong> Provides stability and thickness.
       </p>
       {showNinth && (
-        <p style={{ color: CHORD_COLORS.extension }}>
+        <p className={styles.ninthColor}>
           <strong>9th (Extension):</strong> Adds color and "jazz"
           sophistication.
         </p>
@@ -77,47 +70,18 @@ export const ChordSection = () => {
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <div className={styles.container}>
       {/* TABS (Existing) */}
-      <div
-        style={{
-          marginBottom: 20,
-          borderBottom: "1px solid #ddd",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      <div className={styles.tabContainer}>
         <button
           onClick={() => setSubTab("learn")}
-          style={{
-            padding: "10px 20px",
-            borderBottom:
-              subTab === "learn" ? `3px solid ${UI_COLORS.primary}` : "none",
-            background: "none",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
+          className={`${styles.buttonTab} ${subTab === "learn" ? styles.buttonTabActive : ""}`}
         >
           Learn Chords
         </button>
         <button
           onClick={() => setSubTab("quiz")}
-          style={{
-            padding: "10px 20px",
-            borderBottom:
-              subTab === "quiz" ? `3px solid ${UI_COLORS.success}` : "none",
-            background: "none",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
+          className={`${styles.buttonTab} ${subTab === "quiz" ? styles.buttonTabActive : ""}`}
         >
           Practice Quiz
         </button>
@@ -131,68 +95,25 @@ export const ChordSection = () => {
       />
 
       {subTab === "learn" ? (
-        <div
-          style={{
-            marginTop: 20,
-            textAlign: "center",
-            width: "100%",
-            maxWidth: "600px",
-          }}
-        >
+        <div className={styles.tabLearnContainer}>
           <div style={{ marginBottom: 15 }}>
             <h3>
               {root} {quality} {showNinth && "(add 9)"}
             </h3>
             {/* NEW DESCRIPTION BOX */}
-            <div
-              style={{
-                background: UI_COLORS.backgroundDarker,
-                padding: "15px",
-                borderRadius: "8px",
-                marginBottom: "15px",
-                border: `1px solid ${UI_COLORS.border}`,
-              }}
-            >
+            <div className={styles.descriptionBoxContainer}>
               {getChordDescription(root, quality, showNinth)}
             </div>
           </div>
 
           {/* CONTROLS (Existing) */}
-          <div
-            style={{
-              display: "flex",
-              gap: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              background: UI_COLORS.backgroundDarker,
-              padding: 15,
-              borderRadius: 8,
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "start",
-              }}
-            >
-              <label
-                style={{
-                  fontSize: "0.85em",
-                  fontWeight: "bold",
-                  marginBottom: 5,
-                }}
-              >
-                Chord Quality
-              </label>
+          <div className={styles.controlsContainer}>
+            <div className={styles.controlsDisplay}>
+              <label className={styles.chordLabel}>Chord Quality</label>
               <select
                 value={quality}
                 onChange={(e) => setQuality(e.target.value as ChordQuality)}
-                style={{
-                  padding: 8,
-                  borderRadius: 4,
-                  border: `1px solid ${UI_COLORS.border}`,
-                }}
+                className={styles.selectFormat}
               >
                 {CHORD_TYPES.map((type) => (
                   <option key={type} value={type}>
@@ -201,17 +122,8 @@ export const ChordSection = () => {
                 ))}
               </select>
             </div>
-            <div
-              style={{ display: "flex", alignItems: "center", marginTop: 15 }}
-            >
-              <label
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  cursor: "pointer",
-                }}
-              >
+            <div className={styles.optionsContainer}>
+              <label className={styles.optionsLabel}>
                 <input
                   type="checkbox"
                   checked={showNinth}
@@ -224,51 +136,18 @@ export const ChordSection = () => {
           </div>
 
           {/* COLOR LEGEND (Updated Pink Reference) */}
-          <div
-            style={{
-              marginTop: 20,
-              display: "flex",
-              gap: 15,
-              justifyContent: "center",
-              fontSize: "0.8em",
-              color: UI_COLORS.textMain,
-            }}
-          >
-            <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <span
-                style={{ width: 10, height: 10, background: CHORD_COLORS.root }}
-              ></span>{" "}
-              Root
+          <div className={styles.extensionContainer}>
+            <span className={styles.spanSpacing}>
+              <span className={styles.spanRootColor}></span> Root
             </span>
-            <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <span
-                style={{
-                  width: 10,
-                  height: 10,
-                  background: CHORD_COLORS.guideTone,
-                }}
-              ></span>{" "}
-              Guide Tones (3/7)
+            <span className={styles.spanContainer}>
+              <span className={styles.spanGuideColor}></span> Guide Tones (3/7)
             </span>
-            <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <span
-                style={{
-                  width: 10,
-                  height: 10,
-                  background: CHORD_COLORS.fifth,
-                }}
-              ></span>{" "}
-              5th
+            <span className={styles.spanContainer}>
+              <span className={styles.spanFifthColor}></span> 5th
             </span>
-            <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <span
-                style={{
-                  width: 10,
-                  height: 10,
-                  background: CHORD_COLORS.extension,
-                }}
-              ></span>{" "}
-              9th
+            <span className={styles.spanContainer}>
+              <span className={styles.spanNinthColor}></span> 9th
             </span>
           </div>
         </div>
