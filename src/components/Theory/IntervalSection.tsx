@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { UI_COLORS } from "../../constants/theme.constants";
 import { Piano } from "../Instruments/Piano";
 import { IntervalControls } from "./IntervalControls";
 import { QuizControls } from "../Quiz/QuizControls";
 import { useQuizGame } from "../../hooks/useQuizGame";
 import { getIntervalNote, generateIntervalQuestion } from "../../jazzLogic";
+import styles from "./IntervalSection.module.css";
 
 export const IntervalSection = () => {
   const [subTab, setSubTab] = useState<"learn" | "quiz">("learn");
@@ -28,49 +28,20 @@ export const IntervalSection = () => {
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <div className={styles.container}>
       {/* SUB-TABS (Learn vs Practice) */}
-      <div
-        style={{
-          marginBottom: 20,
-          borderBottom: `1px solid ${UI_COLORS.borderDefault}`,
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      <div className={styles.subtabContainer}>
         <button
           onClick={() => setSubTab("learn")}
-          style={{
-            padding: "10px 20px",
-            borderBottom:
-              subTab === "learn" ? `3px solid ${UI_COLORS.primary}` : "none",
-            background: "none",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
+          className={`${styles.buttonTab} ${subTab === "learn" ? styles.buttonTabActive : ""}`}
         >
-          📖 Learn Intervals
+          Learn Intervals
         </button>
         <button
           onClick={() => setSubTab("quiz")}
-          style={{
-            padding: "10px 20px",
-            borderBottom:
-              subTab === "quiz" ? `3px solid ${UI_COLORS.success}` : "none",
-            background: "none",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
+          className={`${styles.buttonTab} ${subTab === "quiz" ? styles.buttonTabActive : ""}`}
         >
-          🎮 Practice Quiz
+          Practice Quiz
         </button>
       </div>
 
