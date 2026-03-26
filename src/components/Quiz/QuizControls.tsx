@@ -1,6 +1,7 @@
 import React from "react";
 import { DIFFICULTIES } from "../../constants/difficulties.constants";
 import { CHORD_COLORS, UI_COLORS } from "../../constants/theme.constants";
+import styles from "./QuizControls.module.css";
 
 interface Props {
   target: any;
@@ -29,49 +30,21 @@ export const QuizControls: React.FC<Props> = ({
   onStart,
 }) => {
   return (
-    <div
-      style={{
-        marginTop: 20,
-        textAlign: "center",
-        background: UI_COLORS.background,
-        padding: 20,
-        borderRadius: 12,
-        width: "100%",
-      }}
-    >
+    <div className={styles.container}>
       <h3>Interval Training</h3>
 
       {/* Settings Area (Only visible before start) */}
       {!target && (
-        <div
-          style={{
-            marginBottom: 20,
-            padding: 15,
-            background: UI_COLORS.background,
-            borderRadius: 8,
-          }}
-        >
+        <div className={styles.settingsAreaContainer}>
           {/* Difficulty */}
-          <div style={{ marginBottom: 15 }}>
-            <p style={{ margin: "0 0 5px 0", fontWeight: "bold" }}>
-              Timer Difficulty:
-            </p>
-            <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+          <div className={styles.difficultyContainer}>
+            <p className={styles.difficultyText}>Timer Difficulty:</p>
+            <div className={styles.difficultiesContainer}>
               {DIFFICULTIES.map((diff) => (
                 <button
                   key={diff.label}
                   onClick={() => setTimerSetting(diff.value)}
-                  style={{
-                    padding: "6px 12px",
-                    background:
-                      timerSetting === diff.value
-                        ? UI_COLORS.primary
-                        : UI_COLORS.backgroundDarker,
-                    color: timerSetting === diff.value ? "white" : "black",
-                    border: "none",
-                    borderRadius: 6,
-                    cursor: "pointer",
-                  }}
+                  className={`${styles.difficultyButton} ${timerSetting === diff.value ? styles.difficultyButtonActive : ""}`}
                 >
                   {diff.label}
                 </button>
@@ -81,22 +54,14 @@ export const QuizControls: React.FC<Props> = ({
 
           {/* Root Toggle */}
           <div>
-            <label
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 10,
-                cursor: "pointer",
-              }}
-            >
+            <label className={styles.rootLabel}>
               <input
                 type="checkbox"
                 checked={showRoot}
                 onChange={(e) => setShowRoot(e.target.checked)}
-                style={{ width: 18, height: 18 }}
+                className={styles.checkboxRoot}
               />
-              <span style={{ fontSize: "1.1em" }}>
+              <span className={styles.spanRoot}>
                 Show Root Note while guessing?
               </span>
             </label>
@@ -105,102 +70,41 @@ export const QuizControls: React.FC<Props> = ({
       )}
 
       {/* Game Status */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: 10,
-          fontWeight: "bold",
-          padding: "0 10px",
-        }}
-      >
+      <div className={styles.statusContainer}>
         <span>
           Score: {score.correct} / {score.total}
         </span>
         {target && timerSetting > 0 && (
-          <span style={{ color: timeLeft <= 3 ? UI_COLORS.danger : "black" }}>
+          <span
+            className={`${styles.spanStatus} ${timeLeft <= 3 ? styles.spanStatusActive : ""}`}
+          >
             Time: {timeLeft}s
           </span>
         )}
       </div>
 
-      <div style={{ fontSize: "1.5em", marginBottom: 15, minHeight: "1.5em" }}>
-        {message}
-      </div>
+      <div className={styles.messageText}>{message}</div>
 
       {!target && (
-        <button
-          onClick={onStart}
-          style={{
-            fontSize: "1.2em",
-            padding: "10px 30px",
-            background: UI_COLORS.primary,
-            color: "white",
-            border: "none",
-            borderRadius: 8,
-            cursor: "pointer",
-          }}
-        >
+        <button onClick={onStart} className={styles.startButton}>
           Start Quiz
         </button>
       )}
 
       {/* Legend (Always visible) */}
-      <div
-        style={{
-          marginTop: 25,
-          borderTop: `1px solid ${UI_COLORS.backgroundDarker}`,
-          paddingTop: 10,
-        }}
-      >
-        <p
-          style={{
-            fontSize: "0.9em",
-            color: UI_COLORS.textMuted,
-            marginBottom: 5,
-          }}
-        >
-          Color Legend:
-        </p>
-        <div
-          style={{
-            display: "flex",
-            gap: 20,
-            justifyContent: "center",
-            fontSize: "0.9em",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <div
-              style={{
-                width: 15,
-                height: 15,
-                background: CHORD_COLORS.root,
-                border: `1px solid ${UI_COLORS.backgroundDarker}`,
-              }}
-            ></div>
+      <div className={styles.legendContainer}>
+        <p className={styles.legendTitle}>Color Legend:</p>
+        <div className={styles.legendList}>
+          <div className={styles.legendItem}>
+            <div className={`${styles.swatch} ${styles.swatchRoot}`}></div>
             <span>Root Note</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <div
-              style={{
-                width: 15,
-                height: 15,
-                background: CHORD_COLORS.guideTone,
-                border: `1px solid ${UI_COLORS.border}`,
-              }}
-            ></div>
+          <div className={styles.legendItem}>
+            <div className={`${styles.swatch} ${styles.swatchGuide}`}></div>
             <span>Target (Guide)</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <div
-              style={{
-                width: 15,
-                height: 15,
-                background: CHORD_COLORS.fifth,
-                border: `1px solid ${UI_COLORS.border}`,
-              }}
-            ></div>
+          <div className={styles.legendItem}>
+            <div className={`${styles.swatch} ${styles.swatchFifth}`}></div>
             <span>Other Chord Tones</span>
           </div>
         </div>

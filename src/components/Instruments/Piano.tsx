@@ -89,7 +89,7 @@ export const Piano: React.FC<PianoProps> = ({
   // Render Black Keys
   xPosition = 0;
 
-  // Define the black keys based on the position of the black keys
+  // Define the black keys based on the position of the white keys
   const blackKeys = keys.map((midi) => {
     if (!isBlack(midi)) {
       xPosition += whiteKeyWidth;
@@ -125,13 +125,6 @@ export const Piano: React.FC<PianoProps> = ({
 
   return (
     <>
-      {/* Internal Style for Hover Effect */}
-      <style>
-        {`
-          .piano-key { cursor: pointer; transition: opacity 0.1s; }
-          .piano-key:hover { opacity: 0.8; }
-        `}
-      </style>
       <svg width={xPosition} height={whiteKeyHeight + 20}>
         {whiteKeys}
         {blackKeys}
