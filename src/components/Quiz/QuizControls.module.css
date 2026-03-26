@@ -119,6 +119,17 @@
 .swatch {
   width: 15px;
   height: 15px;
-  border: 1px solid var(--color-ui-border-color);
-  background-color: var(--color-ui-swatch-color);
+  border: 1px solid var(--color-bg-subtle);
+}
+
+.swatchRoot {
+  background: var(--color-root);
+}
+
+.swatchGuide {
+  background: var(--color-guide-tone);
+}
+
+.swatchFifth {
+  background: var(--color-fifth);
 }
