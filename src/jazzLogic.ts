@@ -1,5 +1,5 @@
 import { Note } from "tonal";
-import { INTERVALS } from "./constants";
+import { INTERVALS } from "./constants/intervals.constants";
 
 export interface JazzNote {
   note: string;

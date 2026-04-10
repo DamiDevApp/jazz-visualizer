@@ -1,0 +1,135 @@
+.chordDescriptionContainer {
+  text-align: left;
+  font-size: 0.9em;
+  line-height: 1.4em;
+  color: var(--color--ui-text-main);
+}
+.ninthColor {
+  color: var(--color-extension);
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabContainer {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--color-ui-border-default);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonTab {
+  padding: 10px 20px;
+  border-bottom: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.buttonTabActive {
+  border-bottom: 3px solid var(--color-ui-primary);
+}
+
+.tabLearnContainer {
+  margin-top: 20;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.descriptionBoxContainer {
+  background: var(--color-ui-bg-darker);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid var(--color-ui-border);
+}
+
+.controlsContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-ui-bg-darker);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.controlsDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.chordLabel {
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.selectFormat {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-ui-border);
+}
+
+.optionsContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.optionsLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.extensionContainer {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  font-size: 0.8em;
+  color: var(--color-ui-text-main);
+}
+
+.spanSpacing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.spanRootColor {
+  width: 10px;
+  height: 10px;
+  background: var(--color-root);
+}
+
+.spanGuideColor {
+  width: 10px;
+  height: 10px;
+  background: var(--color-guide-tone);
+}
+
+.spanFifthColor {
+  width: 10px;
+  height: 10px;
+  background: var(--color-fifth);
+}
+
+.spanNinthColor {
+  width: 10px;
+  height: 10px;
+  background: var(--color-extension);
+}
+
+.spanContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
