@@ -1,5 +1,5 @@
 .container {
-  margin-top: 20;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -13,14 +13,28 @@
 
 .button {
   padding: 8px;
-  background: var(--color-ui-primary);
-  color: white;
-  border: none;
+  background: var(--color-ui-bg-active);
+  color: var(--color-ui-text-main);
+  border: 0.5px solid var(--color-ui-border);
   border-radius: 4px;
   cursor: pointer;
+  transition:
+    background var(--transition-base),
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.button:hover {
+  background: var(--color-ui-bg-surface);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: scale(0.97);
+  opacity: 0.88;
 }
 
 .buttonActive {
-  background: var(--color-ui-gray-light);
-  color: black;
+  background: var(--color-ui-bg-darker);
+  color: var(--color-ui-text-faint);
 }

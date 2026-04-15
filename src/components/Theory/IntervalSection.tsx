@@ -5,9 +5,11 @@ import { QuizControls } from "../Quiz/QuizControls";
 import { useQuizGame } from "../../hooks/useQuizGame";
 import { getIntervalNote, generateIntervalQuestion } from "../../jazzLogic";
 import styles from "./IntervalSection.module.css";
+import { TabBar } from "../UI/TabBar";
+import { SECTION_TABS } from "./Section.constants";
 
 export const IntervalSection = () => {
-  const [subTab, setSubTab] = useState<"learn" | "quiz">("learn");
+  const [subTab, setSubTab] = useState<string>("learn");
 
   // 1. VISUALIZER STATE
   const [root, setRoot] = useState("C");
@@ -29,22 +31,11 @@ export const IntervalSection = () => {
 
   return (
     <div className={styles.container}>
-      {/* SUB-TABS (Learn vs Practice) */}
-      <div className={styles.subtabContainer}>
-        <button
-          onClick={() => setSubTab("learn")}
-          className={`${styles.buttonTab} ${subTab === "learn" ? styles.buttonTabActive : ""}`}
-        >
-          Learn Intervals
-        </button>
-        <button
-          onClick={() => setSubTab("quiz")}
-          className={`${styles.buttonTab} ${subTab === "quiz" ? styles.buttonTabActive : ""}`}
-        >
-          Practice Quiz
-        </button>
-      </div>
-
+      <TabBar
+        modes={SECTION_TABS}
+        activeTab={subTab}
+        onTabChange={(key) => setSubTab(key)}
+      />
       <Piano
         startNote="C3"
         endNote="C5"

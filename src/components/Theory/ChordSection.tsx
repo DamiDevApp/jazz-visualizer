@@ -8,6 +8,8 @@ import {
   ChordQuality,
 } from "../../jazzLogic";
 import styles from "./ChordSection.module.css";
+import { TabBar } from "../UI/TabBar";
+import { SECTION_TABS } from "./Section.constants";
 
 const CHORD_TYPES: ChordQuality[] = ["Major 7", "Minor 7", "Dominant 7"];
 
@@ -49,7 +51,7 @@ const getChordDescription = (
 };
 
 export const ChordSection = () => {
-  const [subTab, setSubTab] = useState<"learn" | "quiz">("learn");
+  const [subTab, setSubTab] = useState<string>("learn");
 
   // VISUALIZER STATE
   const [root, setRoot] = useState("C");
@@ -71,22 +73,11 @@ export const ChordSection = () => {
 
   return (
     <div className={styles.container}>
-      {/* TABS (Existing) */}
-      <div className={styles.tabContainer}>
-        <button
-          onClick={() => setSubTab("learn")}
-          className={`${styles.buttonTab} ${subTab === "learn" ? styles.buttonTabActive : ""}`}
-        >
-          Learn Chords
-        </button>
-        <button
-          onClick={() => setSubTab("quiz")}
-          className={`${styles.buttonTab} ${subTab === "quiz" ? styles.buttonTabActive : ""}`}
-        >
-          Practice Quiz
-        </button>
-      </div>
-
+      <TabBar
+        modes={SECTION_TABS}
+        activeTab={subTab}
+        onTabChange={(key) => setSubTab(key)}
+      />
       <Piano
         startNote="C3"
         endNote="C5"

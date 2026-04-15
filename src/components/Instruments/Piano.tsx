@@ -26,10 +26,10 @@ export const Piano: React.FC<PianoProps> = ({
   }
 
   // Define keys dimensions
-  const whiteKeyWidth = 40;
-  const whiteKeyHeight = 200;
-  const blackKeyWidth = 24;
-  const blackKeyHeight = 120;
+  const WHITE_KEY_WIDTH = 40;
+  const WHITE_KEY_HEIGHT = 200;
+  const BLACK_KEY_WIDTH = 24;
+  const BLACK_KEY_HEIGHT = 120;
 
   // Define if a note is black
   const isBlack = (midi: number) => {
@@ -57,7 +57,7 @@ export const Piano: React.FC<PianoProps> = ({
     .map((midi) => {
       const noteName = Note.fromMidi(midi);
       const currentX = xPosition;
-      xPosition += whiteKeyWidth;
+      xPosition += WHITE_KEY_WIDTH;
 
       const match = getMatch(midi);
 
@@ -76,10 +76,10 @@ export const Piano: React.FC<PianoProps> = ({
           key={midi}
           x={currentX}
           y={0}
-          width={whiteKeyWidth}
-          height={whiteKeyHeight}
+          width={WHITE_KEY_WIDTH}
+          height={WHITE_KEY_HEIGHT}
           fill={fill}
-          stroke="black"
+          stroke="#1e1a1b"
           style={{ cursor: "pointer" }}
           onClick={() => onKeyClick(Note.pitchClass(noteName))}
         />
@@ -92,11 +92,11 @@ export const Piano: React.FC<PianoProps> = ({
   // Define the black keys based on the position of the white keys
   const blackKeys = keys.map((midi) => {
     if (!isBlack(midi)) {
-      xPosition += whiteKeyWidth;
+      xPosition += WHITE_KEY_WIDTH;
       return null;
     }
 
-    const currentX = xPosition - blackKeyWidth / 2;
+    const currentX = xPosition - BLACK_KEY_WIDTH / 2;
     const match = getMatch(midi);
     const noteName = Note.fromMidi(midi);
 
@@ -113,10 +113,10 @@ export const Piano: React.FC<PianoProps> = ({
         key={midi}
         x={currentX}
         y={0}
-        width={blackKeyWidth}
-        height={blackKeyHeight}
+        width={BLACK_KEY_WIDTH}
+        height={BLACK_KEY_HEIGHT}
         fill={fill}
-        stroke="black"
+        stroke="#1e1a1b"
         style={{ cursor: "pointer" }}
         onClick={() => onKeyClick(Note.pitchClass(noteName))}
       />
@@ -125,7 +125,7 @@ export const Piano: React.FC<PianoProps> = ({
 
   return (
     <>
-      <svg width={xPosition} height={whiteKeyHeight + 20}>
+      <svg width={xPosition} height={WHITE_KEY_HEIGHT + 20}>
         {whiteKeys}
         {blackKeys}
       </svg>
