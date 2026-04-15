@@ -28,6 +28,7 @@ export function getJazzChord(
   add9: boolean = false,
 ): JazzNote[] {
   // 1. Determine the suffix for Tonal.js
+  // Suffix is not being used anywhere. Ill try to get it somewhere
   let suffix = "";
   if (quality === "Major 7") suffix = "maj7";
   if (quality === "Minor 7") suffix = "m7";

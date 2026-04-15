@@ -1,6 +1,5 @@
-/* index.css */
 :root {
-  /* Jazz Chord Roles */
+  /* --- Chord role colors — untouched --- */
   --color-root: #60a5fa;
   --color-root-dark: #3b82f6;
   --color-guide-tone: #34d399;
@@ -9,14 +8,30 @@
   --color-fifth-dark: #f59e0b;
   --color-extension: #f472b6;
 
-  --color-ui-primary: #3b82f6;
-  --color-ui-success: #10b981;
-  --color-ui-danger: #ef4444;
-  --color-ui-bg-subtle: #f9fafb;
-  --color-ui-bg-darker: #dddddd;
-  --color-ui-border: #c4c4c4;
-  --color-ui-border-default: #ddd;
-  --color-ui-text-main: #444;
-  --color-ui-text-muted: #666;
-  --color-ui-gray-light: #e5e7eb;
+  /* --- Dark backgrounds — layered depth --- */
+  --color-ui-bg-page: #1e1a1b; /* darkest — page/body          */
+  --color-ui-bg-subtle: #252022; /* cards, panels                */
+  --color-ui-bg-darker: #2c2628; /* nested surfaces, inputs      */
+  --color-ui-bg-active: #3a3235; /* active/hover states          */
+
+  /* --- Borders --- */
+  --color-ui-border-default: #2c2628;
+  --color-ui-border: #3a3235;
+
+  /* --- Text --- */
+  --color-ui-text-main: #cbbeb3; /* Pale Oak  — primary readable  */
+  --color-ui-text-muted: #7a737e; /* Dim Grey  — secondary         */
+  --color-ui-text-faint: #4a4348; /* near-invisible — labels, hints */
+
+  /* --- UI semantic --- */
+  --color-ui-primary: #3a3235; /* active button bg             */
+  --color-ui-primary-hover: #453a3d;
+  --color-ui-accent: #69626d; /* tab underline, focus         */
+  --color-ui-success: #34d399; /* reuses guide tone            */
+  --color-ui-danger: #c9a0a0; /* muted rose                   */
+
+  /* --- Transitions --- */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.22s ease;
+  --transition-slow: 0.35s ease;
 }
