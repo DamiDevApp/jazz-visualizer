@@ -40,6 +40,10 @@ const getChordDescription = (
       <p>
         <strong>5th:</strong> Provides stability and thickness.
       </p>
+      <p>
+        <strong>Description:</strong> {descriptions[quality]}
+      </p>
+
       {showNinth && (
         <p className={styles.ninthColor}>
           <strong>9th (Extension):</strong> Adds color and "jazz"
@@ -119,7 +123,7 @@ export const ChordSection = () => {
                   type="checkbox"
                   checked={showNinth}
                   onChange={(e) => setShowNinth(e.target.checked)}
-                  style={{ width: 16, height: 16 }}
+                  className={styles.ninthCheckbox}
                 />
                 <span>Add 9th (Extension)</span>
               </label>
